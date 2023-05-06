@@ -1,3 +1,4 @@
+import 'package:aula_api/repository/login_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -10,6 +11,10 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  btnLogin() async {
+    final loginRepository = await LoginRepository().login();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,20 +95,23 @@ class _LoginPageState extends State<LoginPage> {
                   // Btn entrar
                   Padding(
                     padding: const EdgeInsets.only(left: 32, right: 32),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width - 64,
-                      height: 48,
-                      decoration: const BoxDecoration(
-                        color: Color(0xff393199),
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          "Entrar",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                    child: GestureDetector(
+                      onTap: () => btnLogin(),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 64,
+                        height: 48,
+                        decoration: const BoxDecoration(
+                          color: Color(0xff393199),
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Entrar",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
